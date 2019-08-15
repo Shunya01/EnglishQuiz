@@ -22,11 +22,15 @@ class ViewController: UIViewController {
     //総問題数を数えるための変数
     var problemCount = 0
     
+    //アラートの中身を設定するための変数
+    var answers = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         RandomQuestions()
     }
     
+    //ランダムに問題を発生させる関数
     func RandomQuestions(){
         var randomNumber = arc4random_uniform(3)
         randomNumber += 1
@@ -37,6 +41,7 @@ class ViewController: UIViewController {
             option1.setImage(UIImage(named:"apple01")!, for: .normal)
             option2.setImage(UIImage(named:"banana01")!, for: .normal)
             option3.setImage(UIImage(named:"melon01")!, for: .normal)
+            answers = "1)apple 2)banana 3)melon"
             correctAnswer = "1"
             
         case 2:
@@ -44,6 +49,7 @@ class ViewController: UIViewController {
             option1.setImage(UIImage(named:"elephant01")!, for: .normal)
             option2.setImage(UIImage(named:"tiger01")!, for: .normal)
             option3.setImage(UIImage(named:"zebra01")!, for: .normal)
+            answers = "1)elephant 2)tiger 3)zebra"
             correctAnswer = "2"
             
         case 3:
@@ -51,6 +57,7 @@ class ViewController: UIViewController {
             option1.setImage(UIImage(named:"swim01")!, for: .normal)
             option2.setImage(UIImage(named:"sleep01")!, for: .normal)
             option3.setImage(UIImage(named:"run01")!, for: .normal)
+            answers = "1)swim 2)sleep 3)run"
             correctAnswer = "3"
             
         default:
@@ -92,6 +99,7 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //１の選択肢(ボタンを写真に変えている)が押された時
     @IBAction func DidClick1(_ sender: UIButton) {
         if correctAnswer == "1"{
           resultLabel.text = "Correct"
@@ -103,6 +111,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //２の選択肢(ボタンを写真に変えている)が押された時
     @IBAction func DidClick2(_ sender: UIButton) {
         if correctAnswer == "2"{
             resultLabel.text = "Correct"
@@ -114,6 +123,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //３の選択肢(ボタンを写真に変えている)が押された時
     @IBAction func DidClick3(_ sender: UIButton) {
         if correctAnswer == "3"{
             resultLabel.text = "Correct"
@@ -125,10 +135,11 @@ class ViewController: UIViewController {
         }
     }
     
+    //"Answer"ボタンが押されたとき
     @IBAction func DidClickAnswer(_ sender: UIButton) {
         
         //アラートの画面を作成する
-        let alert = UIAlertController(title: "Answer", message: "1)Apple2)Banana3)Melon", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Answer", message: answers, preferredStyle: .alert)
         
         //通常の選択肢を作成する
         let yesAction = UIAlertAction(title: "Close", style: .default) { (UIAlertAction) in
@@ -142,7 +153,9 @@ class ViewController: UIViewController {
         
     }
     
+    //"NextQuestion"ボタンが押された時
     @IBAction func DidClickNext(_ sender: UIButton) {
+        //３問回答していたら結果画面へ遷移
         if problemCount >= 3 {
             performSegue(withIdentifier: "toResult", sender: nil)
         }else{

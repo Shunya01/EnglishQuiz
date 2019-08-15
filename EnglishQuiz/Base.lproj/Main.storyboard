@@ -145,7 +145,6 @@
                                 <state key="normal" title="Answer"/>
                                 <connections>
                                     <action selector="DidClickAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xMl-ci-B1q"/>
-                                    <action selector="DidClickNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aLi-4l-M40"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -284,7 +283,6 @@
                                 <state key="normal" title="Answer"/>
                                 <connections>
                                     <action selector="DidClickAnswer:" destination="6JE-tc-HP6" eventType="touchUpInside" id="bay-lc-r8I"/>
-                                    <action selector="DidClickNext:" destination="6JE-tc-HP6" eventType="touchUpInside" id="QNJ-cJ-gBN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -314,6 +312,6 @@
         <image name="sun01" width="531" height="427"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QOW-js-Lgh"/>
+        <segue reference="UjC-RM-oHt"/>
     </inferredMetricsTieBreakers>
 </document>

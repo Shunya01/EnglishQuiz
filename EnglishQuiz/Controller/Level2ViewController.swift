@@ -23,21 +23,30 @@ class Level2ViewController: UIViewController {
     //総問題数を数えるための変数
     var problemCount = 0
     
+    //アラートの中身を設定するための変数
+    var answers = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //アプリ起動時にRandomQuestions()でクイズを作成
         RandomQuestions()
     }
     
+    //クイズを作成するための関数
     func RandomQuestions(){
+        //ランダムに０〜２の数字を作成
         var randomNumber = arc4random_uniform(3)
+        //その数字に１を足して１〜３の数ができるようにする
         randomNumber += 1
         
+        //randomNumberの数字を元にswitch文で場合分け
         switch randomNumber {
         case 1:
             problem.text = "Mars"
             option1.setImage(UIImage(named:"saturn01")!, for: .normal)
             option2.setImage(UIImage(named:"sun01")!, for: .normal)
             option3.setImage(UIImage(named:"Mars01")!, for: .normal)
+            answers = "1)Saturn 2)Sun 3)Mars"
             correctAnswer = "3"
             
         case 2:
@@ -45,6 +54,7 @@ class Level2ViewController: UIViewController {
             option1.setImage(UIImage(named:"intestine01")!, for: .normal)
             option2.setImage(UIImage(named:"kidney01")!, for: .normal)
             option3.setImage(UIImage(named:"pancreas01")!, for: .normal)
+            answers = "1)intestine 2)kidney 3)pancreas"
             correctAnswer = "2"
             
         case 3:
@@ -52,6 +62,7 @@ class Level2ViewController: UIViewController {
             option1.setImage(UIImage(named:"donkey01")!, for: .normal)
             option2.setImage(UIImage(named:"sloth01")!, for: .normal)
             option3.setImage(UIImage(named:"platypus01")!, for: .normal)
+            answers = "1)donkey 2)sloth 3)platypus"
             correctAnswer = "3"
             
         default:
@@ -126,10 +137,11 @@ class Level2ViewController: UIViewController {
         }
     }
     
+    //"Answer"ボタンを押された時
     @IBAction func DidClickAnswer(_ sender: UIButton) {
         
         //アラートの画面を作成する
-        let alert = UIAlertController(title: "Answer", message: "1)Apple2)Banana3)Melon", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Answer", message:answers, preferredStyle: .alert)
         
         //通常の選択肢を作成する
         let yesAction = UIAlertAction(title: "Close", style: .default) { (UIAlertAction) in
@@ -143,6 +155,7 @@ class Level2ViewController: UIViewController {
         
     }
     
+    //"Next Answer"ボタンが押された時
     @IBAction func DidClickNext(_ sender: UIButton) {
         if problemCount >= 3 {
             performSegue(withIdentifier: "toResult", sender: nil)
